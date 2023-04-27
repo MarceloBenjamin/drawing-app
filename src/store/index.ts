@@ -1,6 +1,6 @@
-import {atom} from 'recoil'
+import { atom } from 'recoil'
 
-export const pathsState = atom({
-	key: 'paths',
+export const pathsValue = atom({
+	key: 'pathsValue',
 	default: [],
 })

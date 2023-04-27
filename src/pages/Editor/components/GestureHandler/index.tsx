@@ -16,10 +16,10 @@ interface Props {
 	onUpdatePinch: any
 	onEndPinch: any
 
-	paths: any
 	enablePan: boolean
 	onStartPan: any
 	onUpdatePan: any
+	onEndPan: any
 }
 
 const GestureHandler: React.FC<Props> = ({
@@ -28,10 +28,10 @@ const GestureHandler: React.FC<Props> = ({
 	onUpdatePinch,
 	onEndPinch,
 
-	paths,
 	enablePan,
 	onStartPan,
 	onUpdatePan,
+	onEndPan,
 }: Props) => {
 	const pinchGesture = Gesture.Pinch()
 		.onStart(onStartPinch)
@@ -41,6 +41,7 @@ const GestureHandler: React.FC<Props> = ({
 	const panGesture = Gesture.Pan()
 		.onStart(onStartPan)
 		.onUpdate(onUpdatePan)
+		.onEnd(onEndPan)
 		.enabled(enablePan)
 
 	const gestures = Gesture.Simultaneous(panGesture, pinchGesture)
@@ -51,11 +52,11 @@ const GestureHandler: React.FC<Props> = ({
 				<Animated.View
 					style={{
 						width: useWindowDimensions().width,
-						height: useWindowDimensions().height,
+						height: (useWindowDimensions().height * 70) / 100,
 						backgroundColor: '#fff',
 						transform: [{scale: scale}],
 					}}>
-					<Draw paths={paths} />
+					<Draw />
 				</Animated.View>
 			</GestureDetector>
 		</GestureHandlerRootView>

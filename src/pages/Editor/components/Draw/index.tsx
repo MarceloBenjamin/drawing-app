@@ -2,19 +2,21 @@ import React from 'react'
 
 import {Canvas, Path} from '@shopify/react-native-skia'
 
+import {useRecoilValue} from 'recoil'
+
+import {pathsValue} from '../../../../store'
+
 interface IPath {
 	segments: string[]
 	color?: string
 }
 
-interface Props {
-	paths: any
-}
+const Editor: React.FC = () => {
+	const path = useRecoilValue(pathsValue)
 
-const Editor: React.FC<Props> = ({paths}: Props) => {
 	return (
 		<Canvas style={{flex: 8}}>
-			{paths.map((p: IPath, index: number) => (
+			{path && path.map((p: IPath, index: number) => (
 				<Path
 					key={index}
 					path={p.segments.join(' ')}
