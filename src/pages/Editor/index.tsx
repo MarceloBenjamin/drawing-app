@@ -26,25 +26,6 @@ const Editor: React.FC = () => {
 
 	const onStartPinch = () => {
 		setEnablePan(false)
-
-		setTimeout(() => {
-			if (tempPathsState.length > 0) {
-				const dateValue = tempPathsState[tempPathsState.length - 1]?.date || new Date()
-
-				const actualDate = new Date()
-
-				if (
-					intervalToDuration({start: new Date(dateValue), end: actualDate})
-						.minutes === 0
-				) {
-					if (actualDate.getTime() - new Date(dateValue).getTime() < 300) {
-						const newPaths = JSON.parse(JSON.stringify(tempPathsState))
-						newPaths.pop()
-						setTempPathsState([...newPaths])
-					}
-				}
-			}
-		}, 50)
 	}
 
 	const onUpdatePinch = useCallback(
@@ -82,6 +63,12 @@ const Editor: React.FC = () => {
 
 	const onUpdatePan = useCallback(
 		(e: PanGestureHandlerEventPayload) => {
+			if (!enablePan) {
+				setTempPathsState([])
+
+				return
+			}
+			
 			setTempPathsState((prevState: any) => {
 				const index = prevState.length - 1
 
@@ -95,7 +82,7 @@ const Editor: React.FC = () => {
 				return [...newState]
 			})
 		},
-		[],
+		[enablePan],
 	)
 
 	const onEndPan = useCallback(() => {
