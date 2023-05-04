@@ -1,6 +1,11 @@
 import { atom } from 'recoil'
 
-export const pathsValue = atom({
-	key: 'pathsValue',
+export const pathsAtom = atom({
+	key: 'paths',
+	default: [],
+})
+
+export const tempPathsAtom = atom({
+	key: 'tempPaths',
 	default: [],
 })
