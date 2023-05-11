@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 
 import {Canvas} from '@shopify/react-native-skia'
 
@@ -22,4 +22,4 @@ const Editor: React.FC = () => {
 	)
 }
 
-export default Editor
+export default memo(Editor)

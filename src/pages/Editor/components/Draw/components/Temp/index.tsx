@@ -16,9 +16,9 @@ interface Props {
 const Temp: React.FC<Props> = ({path}: Props) => {
 	return (
 		<>
-			{path.map((p: IPath) => (
+			{path.map((p: IPath, index: number) => (
 				<Path
-					key={`${p.date}`}
+					key={`${p.segments.join(' ')}${index}`}
 					path={p.segments.join(' ')}
 					strokeWidth={5}
 					style="stroke"

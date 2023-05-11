@@ -52,7 +52,6 @@ const Editor: React.FC = () => {
 					{
 						segments: [`M ${e.x} ${e.y}`],
 						color: '#06d6a0',
-						date: new Date(),
 						blend: erase ? 'clear' : undefined,
 					},
 				]
